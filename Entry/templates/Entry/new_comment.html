@@ -1,0 +1,21 @@
+<!-- {% extends 'base2.html' %} {% block content %}
+<h1> NEW COMMENT </h1>
+<form action="{% url 'Entry:new_comment' %}" id="newcomment" method="post">
+
+    {%if err_desc %} {{err_desc}}
+    <br> {%endif%} 
+    {% csrf_token %} 
+    <br> Comment Description: <br>
+
+    <textarea type="text" rows="4" cols="50" name="comment_description" value=""></textarea>
+    <br>
+    <select name="category_id" form="newcomment">
+        {%for category in categories%}
+        <option value="{{category.id}}">{{category.category}}</option>
+        {%endfor%}
+        <br>
+    </select>
+    <input type="submit" value="Submit">
+</form>
+
+{% endblock %} -->

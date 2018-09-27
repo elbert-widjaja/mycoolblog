@@ -1,0 +1,29 @@
+{% extends 'base2.html' %}
+
+{% block content %}
+<h1> NEW POST </h1>
+<form action="{% url 'Entry:new_post' %}" id="newpost" method="post">
+    {% if err_name %}
+    {{err_name}}<br>
+    {%endif%}
+    {%if err_desc %}
+    {{err_desc}}<br>
+    {%endif%}
+    {% csrf_token %}
+    Post Title : <br>
+    <input type="text" name="post_name" value=""> <br>
+    <br>
+    Post Description: <br>
+    
+    <textarea type = "text" rows="4" cols="50" name = "post_description" value = ""></textarea>
+    <br>
+    <select name="category_id" form="newpost">
+        {%for category in categories%}
+        <option value="{{category.id}}">{{category.category}}</option>
+        {%endfor%}
+        <br>
+    </select>
+    <input type="submit" value="Submit">
+</form>
+
+{% endblock %}

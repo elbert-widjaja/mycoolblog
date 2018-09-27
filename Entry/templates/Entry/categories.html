@@ -1,0 +1,25 @@
+{% extends 'base2.html' %}
+
+{% block content %}
+<table style="width:100%" class="ui celled table">
+    <tr>
+        <th>NAME</th>
+        <th>POST COUNT</th>
+        <th>CREATED AT</th>
+        <th>ACTION</th>
+    </tr>
+    {% for category in categories %}
+        <tr>
+            <td> <a href="{% url 'Entry:category' category.id %}">{{category.category}}</a></td>
+            <td> {{category.posts_set.all.count}}</td>
+            <td> {{category.created_at}}</td>
+            <td><a href="TODO"><u>EDIT</u></a> <a href="TODO"><u>DELETE</u></a></td>
+        </tr>
+    {% endfor %}
+</table>
+
+<div>
+    <a href="{% url 'Entry:new_category' %}"> CREATE NEW CATEGORY </a>
+</div>
+{% endblock %}
+

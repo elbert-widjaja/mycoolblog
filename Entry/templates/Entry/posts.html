@@ -1,0 +1,24 @@
+{% extends 'base2.html' %}
+<!-- assumes all post were put in here regardless of which category theyre in -->
+{% block content %}
+<table style="width:100%" class="ui celled table">
+    <tr>
+        <th>NAME</th>
+        <th>COMMENT COUNT</th>
+        <th>CREATED AT</th>
+        <th>ACTION</th>
+    </tr>
+    {% for post in posts %}
+        <tr>
+            <td> <a href="{% url 'Entry:post' post.id %}">{{post.post_name}}</a></td>
+            <td> {{post.comments_set.all.count}}</td>
+            <td> {{post.created_at}}</td>
+            <td> <a href="TODO"><u>EDIT</u></a> <a href="TODO"><u>DELETE</u></a></td>
+        </tr>
+    {% endfor %}
+</table>
+<div>
+    <br><br>
+    <a href="{% url 'Entry:new_post' %}"> CREATE NEW POSTS </a>
+</div>
+{% endblock %}

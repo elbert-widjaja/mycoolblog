@@ -1,0 +1,31 @@
+{% extends 'base2.html' %}
+
+{% block content %}
+
+    <div class="eight wide column">
+
+    {% for post in posts %}
+    <div class="ui raised container segment">
+        <h1 class="ui header">{{post.post_name}}</h1>
+        <p>{{post.post_description}}</p>
+        <div class="ui labeled button" tabindex="0">
+            <div class="ui red button">
+                <i class="heart icon"></i> Like
+            </div>
+            <a class="ui basic red left pointing label">
+                {{post.post_like}}
+            </a>
+        </div>
+        <div class="ui labeled button" tabindex="0">
+            <div class="ui basic blue button">
+                <i class="fork icon"></i> Comments
+            </div>
+            <a class="ui basic left pointing blue label">
+                {{post.comments_set.all.count}}
+            </a>
+        </div>
+    </div>
+    {% endfor %}
+    </div>
+
+{% endblock %}

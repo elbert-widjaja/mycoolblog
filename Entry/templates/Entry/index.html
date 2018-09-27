@@ -1,0 +1,33 @@
+{% extends 'base2.html' %}
+{% block content %}
+    <div class="eight wide column">
+        {% for post in posts  %}
+            <div class="ui raised container segment">
+                <h1 class="ui header">{{post.post_name}}</h1>
+                <p>{{post.post_description}}</p>
+                <form action="{% url 'Entry:index' %}" method="post">
+                    {% csrf_token %}
+                <div class="ui labeled button" tabindex="0">
+                    
+                    <input type="submit" name = {{post.id}} value="Like">
+                    
+                    <a class="ui basic red left pointing label">
+                        {{post.post_like}}
+                    </a>
+                </div>
+                </form>
+                <form action="{% url 'Entry:index' %}" method="post">
+                    {% csrf_token %}
+                <div class="ui labeled button" tabindex="0">
+                    <input type="submit" name="" value="Comment">
+                    <a class="ui basic left pointing blue label">
+                        {{post.comments_set.all.count}}
+                    </a>
+                </div>
+                </form>
+                
+            </div>
+        {% endfor %}
+    </div>
+    
+{% endblock %}

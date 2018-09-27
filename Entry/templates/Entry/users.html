@@ -1,0 +1,24 @@
+{% extends 'base2.html' %}
+
+{% block content %}
+<table style="width:100%" class="ui celled table">
+    <tr>
+        <th>NAME</th>
+        <th>COMMENT COUNT</th>
+        <th>CREATED AT</th>
+        <th>ACTION</th>
+    </tr>
+    {% for user in users %}
+    <tr>
+        <td><a href="{% url 'Entry:user' user.username %}"> {{user.username}} </a></td>
+        <td> {{user.comments_set.all.count}}</td>
+        <td> {{user.registered_at}}</td>
+        {% if user.is_banned %}
+        <td><a href="TODO"><u>UNBAN</u></a></td>
+        {% else %}
+        <td><a href="TODO"><u>BAN</u></a></td>
+        {% endif %}
+    </tr>
+    {% endfor %}
+</table>
+{% endblock %}

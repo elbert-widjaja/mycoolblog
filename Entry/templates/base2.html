@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/semantic-ui/2.3.3/semantic.min.css">
+    <div class="ui huge header"> MY COOL BLOG </div>
+    
+
+</head> 
+<body>
+    <div class="ui grid">
+        <div class="four wide column">
+            <div>
+                <a href="{% url 'Entry:index' %}">HOME</a>
+            </div>
+            <div>
+                <a href="{% url 'Entry:categories' %}">CATEGORIES</a>
+                <div>
+                    {% for category in categories %}
+                    <a href="{% url 'Entry:category' category.id %}">
+                        <ul>{{ category.category }}</ul>
+                    </a>
+                    {% endfor %}
+                </div>
+            </div>
+            <div>
+                <a href="{% url 'Entry:posts' %}">POSTS</a>
+            </div>
+            <div>
+                <a href="{% url 'Entry:users' %}">USERS</a>
+            </div>
+        </div>
+        <div class="eight wide column">
+            <div>
+                {% block content %}
+                {% endblock %}
+            </div>
+        </div>
+        <div class="four wide column">
+            {% if user.is_authenticated %}
+            <img class="ui small image" src="http://notaris-ppatbadungbali.org/wp-content/uploads/2015/03/empty-profile.png">
+            <h2>{{user.username}}</h2>
+            {% else %}
+            <div>
+                <h2>Login</h2>
+                <form method="post">
+                    {% csrf_token %}
+                    {{ form.as_p }}
+                    <button type="submit">Login</button>
+                    {{"Don't have an account? Click"}} <a href="{%url 'Entry:signup' %}">{{"here"}}</a>
+                    
+                    {{"to sign up."}}   
+                </form>
+            </div>
+            {%endif%}
+        </div>
+
+    </div>
+    
+    
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/semantic-ui/2.3.3/semantic.min.css"></script>
+
+</body>
+</html>

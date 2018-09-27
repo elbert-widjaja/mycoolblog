@@ -1,0 +1,42 @@
+{% extends 'base2.html' %}
+
+
+{% block content %}
+
+<div class="ui raised container segment">
+    <h1>{{ post.post_name }}</h1>
+    <div>
+        {{ post.post_description}}
+    </div>
+
+</div>
+    <div class="ui comments">
+        <h3 class="ui dividing header">Comments</h3>
+        {% for comment in comments %}
+            <div class="comment">
+                <a class="avatar">
+                    <img src="">
+                </a>
+                <div class="content">
+                    <a class="author">{{ comment.user }}</a>
+                    <div class="metadata">
+                        <span class="date">{{ comment.created_at}}</span>
+                    </div>
+                    <div class="text">
+                        {% if comment.is_hidden %}
+                        <p> <a href="TODO">HIDE</a></p>
+                        {% else %}
+                        <p>{{ comment.comment }} <a href="todo">SHOW</a></p>
+                        {% endif %}
+                    </div>
+                    <div class="actions">
+                        <a class="reply">Reply</a>
+                    </div>
+                </div>
+            </div>
+        {% endfor %}
+        
+    </div>
+
+
+{% endblock %}
